@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Historial de Predicciones</h1>
+
+<a href="/" class="btn">⬅ Volver</a>
+
+<table>
+    <tr>
+        {% for key in tables[0].keys() %}
+            <th>{{ key }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for row in tables %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

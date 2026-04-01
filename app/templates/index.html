@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Software Defect Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Software Defect Predictor</h1>
+
+<a href="/history" class="btn">Ver Historial</a>
+
+<form method="POST">
+    <div class="grid">
+        {% for col in columns %}
+            <div>
+                <label>{{ col }}</label>
+                <input type="number" step="any" name="{{ col }}" required>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Predecir</button>
+</form>
+
+{% if prediction %}
+    <div class="result">
+        <h2>{{ prediction }}</h2>
+    </div>
+{% endif %}
+
+</body>
+</html>
