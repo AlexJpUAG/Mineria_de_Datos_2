@@ -18,7 +18,6 @@ El sistema permite:
 ```
 
 project/
-
 data/
 jm1.csv
 predictions_log.csv (se genera automáticamente)
@@ -31,19 +30,19 @@ preprocessing.py
 
 app/
 app.py
+
 templates/
 index.html
 history.html
+
 static/
 style.css
 
 model/
 model.pkl
 scaler.pkl
-
 requirements.txt
 README.md
-
 ````
 
 ---
@@ -69,6 +68,13 @@ Debe colocarse en:
 ```
 data/jm1.csv
 ```
+
+1. Preprocesamiento de datos
+2. Entrenamiento del modelo
+3. Generación del modelo y scaler
+4. Predicción
+5. Visualización en la aplicación web
+6. Registro en historial
 
 ---
 
