@@ -10,5 +10,7 @@ venv/
 env/
 
 .env
-
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
 .DS_Store
