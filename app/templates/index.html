@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Software Defect Predictor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Defectos de Software</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="card">
+            <h1>Predicción de Defectos de Software</h1>
+            <p class="subtitle">
+                Ingresa las métricas del módulo de software para predecir si presenta defectos o no.
+            </p>
 
-<h1>Software Defect Predictor</h1>
-
-<a href="/history" class="btn">Ver Historial</a>
-
-<form method="POST">
-    <div class="grid">
-        {% for col in columns %}
-            <div>
-                <label>{{ col }}</label>
-                <input type="number" step="any" name="{{ col }}" required>
+            <div class="actions">
+                <a href="/history" class="btn">Ver historial</a>
             </div>
-        {% endfor %}
+
+            <form method="POST">
+                <div class="grid">
+                    {% for col in columns %}
+                        <div class="field">
+                            <label for="{{ col }}">{{ col }}</label>
+                            <input type="number" step="any" name="{{ col }}" id="{{ col }}" required>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div style="text-align:center;">
+                    <button type="submit">Realizar predicción</button>
+                </div>
+            </form>
+
+            {% if prediction %}
+                {% if "TIENE defectos" in prediction %}
+                    <div class="result warning">
+                        {{ prediction }}
+                    </div>
+                {% elif "NO tiene defectos" in prediction %}
+                    <div class="result success">
+                        {{ prediction }}
+                    </div>
+                {% else %}
+                    <div class="result error">
+                        {{ prediction }}
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <p class="footer-note">
+                Modelo de clasificación basado en métricas estáticas del dataset JM1.
+            </p>
+        </div>
     </div>
-
-    <button type="submit">Predecir</button>
-</form>
-
-{% if prediction %}
-    <div class="result">
-        <h2>{{ prediction }}</h2>
-    </div>
-{% endif %}
-
 </body>
 </html>

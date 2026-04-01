@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Historial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Predicciones</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <div class="card">
+            <h1>Historial de Predicciones</h1>
+            <p class="subtitle">
+                Aquí se muestran todas las predicciones realizadas en la aplicación.
+            </p>
 
-<h1>Historial de Predicciones</h1>
+            <div class="actions">
+                <a href="/" class="btn">Volver al inicio</a>
+            </div>
 
-<a href="/" class="btn">⬅ Volver</a>
+            {% if tables and tables|length > 0 %}
+                <div class="table-wrapper">
+                    <table>
+                        <tr>
+                            {% for key in tables[0].keys() %}
+                                <th>{{ key }}</th>
+                            {% endfor %}
+                        </tr>
 
-<table>
-    <tr>
-        {% for key in tables[0].keys() %}
-            <th>{{ key }}</th>
-        {% endfor %}
-    </tr>
-
-    {% for row in tables %}
-        <tr>
-            {% for value in row.values() %}
-                <td>{{ value }}</td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
-
+                        {% for row in tables %}
+                            <tr>
+                                {% for value in row.values() %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <p class="empty-message">Todavía no hay predicciones registradas.</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
